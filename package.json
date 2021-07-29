@@ -6,11 +6,18 @@
   "author": "Shamal Maksim <max280599@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "watch": "webpack --watch",
-    "start": "webpack serve",
-    "build": "webpack"
+    "_env-prod": "cross-env NODE_ENV=production",
+    "_env-dev": "cross-env NODE_ENV=development",
+    "watch": "yarn _env-dev webpack --watch",
+    "start": "yarn _env-dev webpack serve",
+    "build": "yarn _env-prod webpack",
+    "build-dev": "yarn _env-dev webpack"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
     "webpack": "^5.47.0",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
