@@ -1,6 +1,3 @@
-const test = {
-  name: "Maksim",
-  surname: "Shamal",
-};
+import "./styles/index.scss";
 
-console.log(test);
+console.log("Application was started");
