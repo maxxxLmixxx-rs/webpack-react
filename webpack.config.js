@@ -1,9 +1,12 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const ReactRefreshBabelPlugin = require("react-refresh/babel");
 
 /**
  * @1 .browserslist css-hot fix
+ * @2 react-hot reload fix
  */
 
 const node_env = process.env.NODE_ENV;
@@ -16,12 +19,14 @@ const mode = {
 module.exports = {
   mode: mode.default,
   /*1*/ target: mode.isDevelopment ? "web" : "browserslist",
+  /*2*/ entry: "./src/index.js",
   devtool: mode.isDevelopment && "source-map",
   output: {
     clean: true,
   },
   devServer: {
     contentBase: path.resolve(__dirname, "dist"),
+    open: true,
     hot: true,
     port: 8080,
   },
@@ -30,7 +35,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
-  ],
+    mode.isDevelopment && new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean),
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
@@ -57,7 +63,14 @@ module.exports = {
       {
         test: /\.jsx?$/i,
         exclude: /node_modules/,
-        use: { loader: "babel-loader" },
+        use: {
+          loader: "babel-loader",
+          options: {
+            plugins: [mode.isDevelopment && ReactRefreshBabelPlugin].filter(
+              Boolean
+            ),
+          },
+        },
       },
     ],
   },

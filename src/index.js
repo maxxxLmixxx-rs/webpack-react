@@ -1,4 +1,4 @@
 import ReactDOM from "react-dom";
-import "./styles/index.scss";
+import Component from "./Component";
 
-ReactDOM.render(<h1>React application</h1>, document.querySelector("#root"));
+ReactDOM.render(<Component />, document.querySelector("#root"));
