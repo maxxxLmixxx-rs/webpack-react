@@ -22,6 +22,9 @@ module.exports = {
     port: 8080,
   },
   plugins: [new MiniCssExtractPlugin()],
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
+  },
   module: {
     rules: [
       {
@@ -34,7 +37,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.js$/i,
+        test: /\.jsx?$/i,
         exclude: /node_modules/,
         use: { loader: "babel-loader" },
       },

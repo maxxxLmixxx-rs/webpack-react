@@ -1,3 +1,4 @@
+import ReactDOM from "react-dom";
 import "./styles/index.scss";
 
-console.log("Application was started");
+ReactDOM.render(<h1>React application</h1>, document.querySelector("#root"));
