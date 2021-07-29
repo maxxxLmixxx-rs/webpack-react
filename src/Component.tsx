@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./styles/index.scss";
+import eyeGif from "./eye.gif";
 
-const Component = () => {
+const Component: React.FC = () => {
   const [clicked, setClicked] = useState(false);
   return (
     <>
@@ -16,6 +17,7 @@ const Component = () => {
       >
         {clicked ? "clicked" : "not clicked"}
       </button>
+      <img src={eyeGif} />
     </>
   );
 };

@@ -19,7 +19,7 @@ const mode = {
 module.exports = {
   mode: mode.default,
   /*1*/ target: mode.isDevelopment ? "web" : "browserslist",
-  /*2*/ entry: "./src/index.js",
+  /*2*/ entry: "./src/index.tsx",
   devtool: mode.isDevelopment && "source-map",
   output: {
     clean: true,
@@ -44,7 +44,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
+        test: /\.(png|jpe?g|webp|gif|svg)$/i,
         type: "asset",
         parser: {
           dataUrlCondition: {
@@ -62,7 +62,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.jsx?$/i,
+        test: /\.(ts|js)x?$/i,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
