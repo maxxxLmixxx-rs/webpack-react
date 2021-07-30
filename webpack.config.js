@@ -8,6 +8,9 @@ const ReactRefreshBabelPlugin = require('react-refresh/babel')
 /**
  * @1 .browserslist css-hot fix
  * @2 react-hot reload fix
+ * @3 easier to debug production app
+ * 
+ * devtool: mode.isDevelopment && 'source-map',
  */
 
 const node_env = process.env.NODE_ENV
@@ -32,7 +35,7 @@ module.exports = {
   mode: mode.default,
   /*1*/ target: mode.isDevelopment ? 'web' : 'browserslist',
   /*2*/ entry: './src/index.tsx',
-  devtool: mode.isDevelopment && 'source-map',
+  /*3*/ devtool: 'source-map',
   output: {
     clean: true,
   },
