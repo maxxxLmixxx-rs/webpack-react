@@ -1,6 +1,7 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const ReactRefreshBabelPlugin = require('react-refresh/babel')
 
@@ -46,6 +47,14 @@ module.exports = {
         new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
             template: './public/index.html',
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: 'public',
+                    filter: (filename) => !filename.endsWith('index.html'),
+                },
+            ],
         }),
         mode.isDevelopment && new ReactRefreshWebpackPlugin(),
     ].filter(Boolean),
