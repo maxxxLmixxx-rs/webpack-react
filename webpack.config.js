@@ -16,6 +16,17 @@ const mode = {
   default: node_env || "production",
 };
 
+const styles = {
+  cssLoader: {
+    loader: "css-loader",
+    options: {
+      modules: true,
+    },
+  },
+  postcssLoader: "postcss-loader",
+  sassLoader: "sass-loader",
+};
+
 module.exports = {
   mode: mode.default,
   /*1*/ target: mode.isDevelopment ? "web" : "browserslist",
@@ -56,9 +67,9 @@ module.exports = {
         test: /\.(sa|sc|c)ss$/i,
         use: [
           MiniCssExtractPlugin.loader,
-          "css-loader",
-          "postcss-loader",
-          "sass-loader",
+          styles.cssLoader,
+          styles.postcssLoader,
+          styles.sassLoader,
         ],
       },
       {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./styles/index.scss";
+import styles from "./styles/index.scss";
 import eyeGif from "./eye.gif";
 
 const Component: React.FC = () => {
@@ -17,7 +17,7 @@ const Component: React.FC = () => {
       >
         {clicked ? "clicked" : "not clicked"}
       </button>
-      <img src={eyeGif} />
+      <img className={styles.image} src={eyeGif} />
     </>
   );
 };
