@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styles from './styles/index.scss'
 import eyeGif from './eye.gif'
+import CocktailSvg from './cocktail.svg'
 
 const Component: React.FC = () => {
     const [clicked, setClicked] = useState(false)
@@ -19,6 +20,7 @@ const Component: React.FC = () => {
                 {clicked ? 'clicked' : 'not clicked'}
             </button>
             <img className={styles.image} src={eyeGif} alt="eye animation" />
+            <CocktailSvg />
         </>
     )
 }
