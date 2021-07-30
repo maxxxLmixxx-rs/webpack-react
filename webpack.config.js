@@ -26,6 +26,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, "dist"),
+    clientLogLevel: "silent",
     open: true,
     hot: true,
     port: 8080,
