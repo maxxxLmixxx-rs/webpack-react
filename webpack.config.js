@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const ReactRefreshBabelPlugin = require('react-refresh/babel')
+const packageJSON = require('./package.json')
 
 /**
  * @1 .browserslist css-hot fix
@@ -82,12 +83,18 @@ const styles = {
   extract: mode.isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
 }
 
+const publicPath = () =>
+  packageJSON.publicPath !== 'auto' && mode.isProduction
+    ? packageJSON.publicPath.replace(/\/$/, '') + '/'
+    : 'auto'
+
 module.exports = {
   mode: mode.default,
   /*1*/ target: mode.isDevelopment ? 'web' : 'browserslist',
   /*2*/ entry: './src/index.tsx',
   /*3*/ devtool: 'source-map',
   output: {
+    publicPath: publicPath(),
     assetModuleFilename: filenames.assets,
     filename: filenames.js,
     clean: true,
