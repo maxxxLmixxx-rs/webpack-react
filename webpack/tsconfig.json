@@ -21,7 +21,7 @@
     "experimentalDecorators": true,
     "jsx": "react-jsx",
     "typeRoots": [
-      "src/typings",
+      "src/types",
       "node_modules/@types"
     ]
   },
