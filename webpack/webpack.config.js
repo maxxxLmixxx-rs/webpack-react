@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const ReactRefreshBabelPlugin = require('react-refresh/babel')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const packageJSON = require('./package.json')
 
 /**
@@ -122,6 +123,10 @@ module.exports = {
           filter: (filepath) => !filepath.endsWith('index.html'),
         },
       ],
+    }),
+    new ESLintPlugin({
+      failOnError: true,
+      files: "src/**/*.{js,jsx,ts,tsx}"
     }),
     mode.isDevelopment && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
