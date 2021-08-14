@@ -18,10 +18,15 @@ const packageJSON = require('./package.json')
  */
 
 const node_env = process.env.NODE_ENV
+const no_server = process.env.NO_SERVER
 const mode = {
   isProduction: node_env === 'production',
   isDevelopment: node_env === 'development',
   default: node_env || 'production',
+}
+
+const isRefreshPlugin = () => {
+  return no_server ? mode.isDevelopment && !no_server : false
 }
 
 const nameGeneratorStore = {
@@ -128,7 +133,7 @@ module.exports = {
       failOnError: true,
       files: "src/**/*.{js,jsx,ts,tsx}"
     }),
-    mode.isDevelopment && new ReactRefreshWebpackPlugin(),
+    isRefreshPlugin() && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -174,7 +179,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             plugins: [
-              mode.isDevelopment && ReactRefreshBabelPlugin
+              isRefreshPlugin() && ReactRefreshBabelPlugin
             ].filter(Boolean),
           },
         },

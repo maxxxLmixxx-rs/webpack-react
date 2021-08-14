@@ -9,10 +9,11 @@
   "scripts": {
     "_env-prod": "cross-env NODE_ENV=production",
     "_env-dev": "cross-env NODE_ENV=development",
+    "_env-dev-build": "cross-env NODE_ENV=development NO_SERVER=true",
     "watch": "npm run _env-dev webpack --watch",
     "start": "npm run _env-dev webpack serve",
     "build": "npm run _env-prod webpack",
-    "build-dev": "npm run _env-dev webpack",
+    "build-dev": "npm run _env-dev-build webpack",
     "lint": "eslint src && echo \"No linting errors\"",
     "lint:fix": "eslint src --fix",
     "prettify": "prettier --write src"
